@@ -1,8 +1,8 @@
 from django.urls import path
-from hr 
+from hr import views
 
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+   path("signin",views.SigninView.as_view(),name="sign_in")
 ]
