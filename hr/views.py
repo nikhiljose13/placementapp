@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View,FormView
 
 from hr.forms import Loginform
 # Create your views here.
 
-class SigninView(View):
-    def get(self,reuest,*args,**kwargs):
-        form=Loginform()
-        return render(reuest,"signin.html",{"form":form})
+class SigninView(FormView):
+    template_name="login.html"
+    form_class=Loginform
