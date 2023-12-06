@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from django.views.generic import View,FormView,TemplateView,CreateView
+from django.views.generic import View,FormView,TemplateView,CreateView,ListView
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse_lazy
-
+from myapp.models import Category
 from hr.forms import LoginForm,CategoryForm
 # Create your views here.
 
@@ -32,7 +32,16 @@ class signOutView(View):
           logout(request)
           return redirect("sign_in")
      
-class CategoryListcreateView(CreateView):
+class CategoryListcreateView(CreateView,ListView):
      template_name="category.html"
      form_class=CategoryForm
      success_url=reverse_lazy("category")
+     context_object_name="data"
+     model=Category
+
+class CategoryDeletecreateView(View):
+
+      def get(self,request,*args,**kwargs):
+           id=kwargs.get("pk")
+           Category.objects.filter(id=id).delete()
+           return redirect("category")

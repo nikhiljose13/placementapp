@@ -1,5 +1,5 @@
 from django import forms 
-from myapp.models import Category
+from myapp.models import Category,Jobs
 
 
 class LoginForm(forms.Form):
@@ -11,3 +11,4 @@ class  CategoryForm(forms.ModelForm):
     class Meta:
         model=Category
         fields=["name"]
+
