@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.views.generic import View,FormView,TemplateView,CreateView,ListView
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse_lazy
-from myapp.models import Category
-from hr.forms import LoginForm,CategoryForm
+from myapp.models import Category,Jobs
+from hr.forms import LoginForm,CategoryForm,JobForm
 # Create your views here.
 
 class SigninView(FormView):
@@ -45,3 +45,21 @@ class CategoryDeletecreateView(View):
            id=kwargs.get("pk")
            Category.objects.filter(id=id).delete()
            return redirect("category")
+      
+class JobCreateView(CreateView):
+
+     template_name="job_add.html"
+     form_class=JobForm
+     success_url=reverse_lazy("index")
+
+class JobListView(ListView):
+
+     template_name="job_list.html"
+     context_object_name="jobs"
+     model=Jobs
+
+class JobDeleteView(View):
+     def get(self,request,*args,**kwargs):
+          id=kwargs.get("pk")
+          Jobs.objects.filter(id=id).delete()
+          return redirect("index")

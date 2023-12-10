@@ -12,3 +12,11 @@ class  CategoryForm(forms.ModelForm):
         model=Category
         fields=["name"]
 
+class JobForm(forms.ModelForm):
+   
+   class Meta:
+       model=Jobs
+       exclude=("status",)
+       widgets={
+           "category":forms.Select(attrs={"class":"form-select form-control"})
+       }
