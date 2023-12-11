@@ -33,8 +33,17 @@
                             class="text-light text-decoration-none mt-4 p-2 fs-6 btn btn-dark text-start">Home</a>
                         <a href="{%url 'category'%}"
                             class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-start">Category</a>
-                        <a href="{%url 'job-add'%}"
-                            class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-start">Jobs</a>
+
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Jobs
+                                </a>
+                              
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{%url 'job-add'%}">Add New Job</a></li>
+                                  <li><a class="dropdown-item" href="{%url 'job-list'%}">All Jobs</a></li>
+                                </ul>
+                              </div>
                         <a href="#"
                             class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-start">Applications</a>
                             <a href="{%url 'signout'%}"
