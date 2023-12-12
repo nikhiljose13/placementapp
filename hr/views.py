@@ -24,7 +24,7 @@ class SigninView(FormView):
                     if request.user.is_superuser:
                          return redirect("index")
                     else:
-                         return redirect("seeker_index")
+                         return redirect("seeker-index")
             print("invalid")
             return render(request,"login.html",{"form":form})
     
