@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{%extends 'jobseeker/base.html'%}
+
+{%block bodyblock%}
+<div class="mt-2">
     <h1>welcome student {{request.user}}</h1>
-    {%if request.user.profile%}
-       <a href="">Edit profile</a>
-       <a href="{%url 'profile-detail' request.user.profile.id%}">view profile</a>
-    {%else%}
-       <a href="{%url 'profile-add'%}">add profile</a>
-    {%endif%}
-</body>
-</html>
+        {%if request.user.profile%}
+           <a href="{%url 'profile-edit' request.user.profile.id%}">Edit profile</a>
+           <a href="{%url 'profile-detail' request.user.profile.id%}">view profile</a>
+        {%else%}
+           <a href="{%url 'profile-add'%}">add profile</a>
+        {%endif%}
+</div>
+{%endblock%}

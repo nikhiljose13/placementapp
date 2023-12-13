@@ -35,7 +35,7 @@ class ProfileDetailView(DetailView):
      model=StudentProfile
 
 class ProfileEditView(UpdateView):
-     template_name="jobseeker/profile_detail.html"
+     template_name="jobseeker/profile_edit.html"
      form_class=ProfileForm
      model=StudentProfile
      success_url=reverse_lazy("seeker-index")
