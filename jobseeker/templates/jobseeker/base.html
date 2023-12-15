@@ -46,22 +46,28 @@
         <div class="dropdown nav-item mr-lg-4" style="margin-right: 6em;">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">
                 <!-- <b class="caret"></b> -->
-                {%if request.user.profile.profile_pic%}
-                <img class="profile-small" src="{{request.user.profile.profile_pic.url}}%" alt="Avatar">
+                {% if request.user.profile.profile_pic %}
+                <img class="profile-small" src="{{ request.user.profile.profile_pic.url }}%" alt="Avatar">
                 {%else%}
                 <img class="profile-small" src="{%static 'jobseeker/images/profilepic.png'%}" alt="Avatar">
                 {%endif%}
             </a>
             <ul class="dropdown-menu p-2" role="menu">
+                {%if request.user.profile%}
                 <li class="nav-item">
-                    <a href="#blog" class="nav-link scroll">Profile</a>
+                    <a href="{%url 'profile-detail' request.user.profile.id%}" class="nav-link scroll">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profile_edit.html" class="nav-link scroll">Edit profile</a>
+                    <a href="{%url 'profile-edit' request.user.profile.id%}" class="nav-link scroll">Edit profile</a>
                 </li>
+                {%else%}
+                <li class="nav-item">
+                    <a href="{%url 'profile-add'%}" class="nav-link scroll">Add profile</a>
+                </li>
+                {%endif%}
                 <div class="dropdown-divider"></div>
                 <li class="nav-item">
-                    <a href="#testimonials" class="nav-link scroll">Logout</a>
+                    <a href="{%url 'signout'%}" class="nav-link scroll">Logout</a>
                 </li>
             </ul>
         </div>
