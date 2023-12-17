@@ -22,7 +22,7 @@
 	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
 	background: linear-gradient(to right, #FF4B2B, #FF416C);" >
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{%url 'seeker-index'%}">
             <img src="{%static 'jobseeker/images/linkspherena.png'%}" alt="Logo" width="100" height="h-auto" class="ms-5">
           </a>
 
@@ -47,7 +47,7 @@
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">
                 <!-- <b class="caret"></b> -->
                 {% if request.user.profile.profile_pic %}
-                <img class="profile-small" src="{{ request.user.profile.profile_pic.url }}%" alt="Avatar">
+                <img class="profile-small" src="{{ request.user.profile.profile_pic.url }}" alt="Avatar">
                 {%else%}
                 <img class="profile-small" src="{%static 'jobseeker/images/profilepic.png'%}" alt="Avatar">
                 {%endif%}

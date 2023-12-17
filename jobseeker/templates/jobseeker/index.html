@@ -2,12 +2,14 @@
 
 {%block bodyblock%}
 <div class="mt-2">
-    <h1>welcome student {{request.user}}</h1>
+    <h1 class="mt-4">welcome student {{request.user}}</h1>
         {%if request.user.profile%}
-           <a href="{%url 'profile-edit' request.user.profile.id%}">Edit profile</a>
-           <a href="{%url 'profile-detail' request.user.profile.id%}">view profile</a>
+          <p class=" mt-5 d-flex justify-content-center">
+              <a href="{%url 'profile-edit' request.user.profile.id%}" class="btn btn-info me-3">Edit profile</a>
+              <a href="{%url 'profile-detail' request.user.profile.id%}" class="btn btn-info me-3">view profile</a>
+          </p class=" mt-5">
         {%else%}
-           <a href="{%url 'profile-add'%}">add profile</a>
+           <a href="{%url 'profile-add'%} " class="btn btn-info me-3">add profile</a>
         {%endif%}
 </div>
 {%endblock%}
