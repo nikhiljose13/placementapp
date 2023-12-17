@@ -1,15 +1,28 @@
 {%extends 'jobseeker/base.html'%}
 
 {%block bodyblock%}
-<div class="mt-2">
-    <h1 class="mt-4">welcome student {{request.user}}</h1>
-        {%if request.user.profile%}
-          <p class=" mt-5 d-flex justify-content-center">
-              <a href="{%url 'profile-edit' request.user.profile.id%}" class="btn btn-info me-3">Edit profile</a>
-              <a href="{%url 'profile-detail' request.user.profile.id%}" class="btn btn-info me-3">view profile</a>
-          </p class=" mt-5">
-        {%else%}
-           <a href="{%url 'profile-add'%} " class="btn btn-info me-3">add profile</a>
-        {%endif%}
+
+{%for job in data%}
+
+<div class="mt-5">
+  <div class="card mb-1 " style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4 d-flex justify-content-center align-items-center px-2 ">
+          {%if job.poster%}
+          <img src="{{job.poster.url}}" class="img-fluid rounded-start" alt="...">
+          {%endif%}
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{job.title}}</h5>
+            <p class="card-text"><i class="fa-regular fa-clock me-2"></i>{{job.job_type}}</p>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
+
+{%endfor%}
+
 {%endblock%}

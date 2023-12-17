@@ -13,6 +13,7 @@ class Jobs(models.Model):
     description=models.CharField(max_length=200)
     salary=models.PositiveIntegerField()
     experience=models.PositiveIntegerField(default=0)
+    Created_date=models.DateTimeField(auto_now_add=True,null=True)
     last_date=models.DateField()
     vaccancies=models.PositiveIntegerField(default=1)
     poster=models.ImageField(upload_to="posterimages",null=True,blank=True)
@@ -21,7 +22,11 @@ class Jobs(models.Model):
     category=models.ForeignKey(Category,on_delete=models.DO_NOTHING)
     status=models.BooleanField(default=True)
     company=models.CharField(max_length=200,null=True)
-
+    options=(
+        ("part-time","part-time"),
+        ("full-time","full-time")
+    )
+    job_type=models.CharField(max_length=200,choices=options,default="full-time")
     def __str__(self) -> str:
         return self.title
     
