@@ -45,8 +45,10 @@ class ProfileEditView(UpdateView):
      model=StudentProfile
      success_url=reverse_lazy("seeker-index")
 
-# class  JoblistView(ListView):
-#      template_name="jobseeker/job_list.html"
-#      context_object_name="jobs"
-#      model=Jobs
+
+class JobDetailView(DetailView):
+     template_name="jobseeker/job_detail.html"
+     model=Jobs
+     context_object_name="data"
+
 
