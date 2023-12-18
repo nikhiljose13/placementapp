@@ -2,10 +2,10 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import View,CreateView,TemplateView,DetailView,UpdateView,ListView
-from myapp.models import  StudentProfile,Jobs
+from myapp.models import  StudentProfile,Jobs,Applications
 from jobseeker.forms import RegistrationForm,ProfileForm
 # Create your views here.
 
@@ -51,4 +51,10 @@ class JobDetailView(DetailView):
      model=Jobs
      context_object_name="data"
 
-
+class ApplyJobView(View):
+   def post(self,request,*args,**kwargs):
+       id=kwargs.get("pk")
+       job_obj=Jobs.objects.get(id=id)
+       student_obj = request.user
+       Applications.objects.create(job=job_obj, student=student_obj)
+       return redirect("seeker-index")

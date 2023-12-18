@@ -10,4 +10,6 @@ urlpatterns = [
    path("profiles/<int:pk>/",views.ProfileDetailView.as_view(),name="profile-detail"),
    path("profiles/<int:pk>/change",views.ProfileEditView.as_view(),name="profile-edit"),
    path("jobs/<int:pk>/",views.JobDetailView.as_view(),name="job-detail"),
+   path("jobs/<int:pk>/apply",views.ApplyJobView.as_view(),name="job-apply"),
+
 ]
