@@ -29,6 +29,9 @@ class Jobs(models.Model):
     job_type=models.CharField(max_length=200,choices=options,default="full-time")
     def __str__(self) -> str:
         return self.title
+    def application_count(self):
+        qs=Applications.objects.filter(Job=self).count()
+        return qs
     
 class StudentProfile(models.Model):
     qualification=models.CharField(max_length=200)
@@ -44,6 +47,7 @@ class StudentProfile(models.Model):
     phone=models.CharField(max_length=200)
     profile_pic=models.ImageField(upload_to="profilepics",null=True,blank=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
+    saved_jobs=models.ManyToManyField(Jobs,on_delete=models.CASCADE,related_name="saved")
 
     def __str__(self):
         return self.user.username
